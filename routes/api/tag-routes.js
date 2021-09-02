@@ -53,10 +53,39 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new tag
+  /* req.body should look like this...
+      {
+        tag_name: "Computer"
+      }
+    */
+  Tag.create(req.body)
+    .then((tag) => {
+      res.status(200).json(tag);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 });
 
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
+  /* req.body should look like this...
+      {
+        tag_name: "Computer"
+      }
+    */
+  const searchID = req.params.id
+  Tag.update(req.body, {
+    where: {
+      id: searchID,
+    },
+  })
+    .then((updatedTag) => {
+      res.status(200).json({ code: 200, message: `${updatedTag} Tag updated`, updatedTagID: searchID });
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 });
 
 router.delete('/:id', async (req, res) => {
