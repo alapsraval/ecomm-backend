@@ -53,8 +53,26 @@ router.put('/:id', (req, res) => {
   // update a category by its `id` value
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
+  const searchID = req.params.id
+  try {
+    const categoryData = await Category.destroy({
+      where: {
+        id: searchID
+      }
+    });
+
+    if (!categoryData) {
+      res.status(404).json({ message: `No category found with id, ${searchID}.` });
+      return;
+    }
+
+    res.status(200).json({ code: 200, message: 'Category deleted', deletedCategoryID: searchID });
+  } catch (err) {
+    if (err.parent.errno === 1451) err = { code: 500, message: 'Cannot delete or update a parent category. Please delete products under this category first.', categoryID: searchID };
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
