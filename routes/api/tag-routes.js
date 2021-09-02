@@ -55,7 +55,7 @@ router.post('/', (req, res) => {
   // create a new tag
   /* req.body should look like this...
       {
-        tag_name: "Computer"
+        "tag_name": "photography"
       }
     */
   Tag.create(req.body)
