@@ -63,6 +63,10 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
+  /* req.body should look like this...
+  {
+    category_name: "Basketball"
+  }*/
   const searchID = req.params.id
   Category.update(req.body, {
     where: {
