@@ -1,2 +1,2 @@
-# Object-Relational Mapping (ORM): E-Commerce Back End
-An e-commerce API using ExpressJS and Sequelize
+# E-Commerce Back End
+This is an e-commerce API using Express.js and MySQL database.
