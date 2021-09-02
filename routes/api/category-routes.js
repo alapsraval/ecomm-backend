@@ -47,10 +47,34 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new category
+  /* req.body should look like this...
+      {
+        category_name: "Basketball"
+      }
+    */
+  Category.create(req.body)
+    .then((category) => {
+      res.status(200).json(category);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 });
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
+  const searchID = req.params.id
+  Category.update(req.body, {
+    where: {
+      id: searchID,
+    },
+  })
+    .then((updatedCategory) => {
+      res.status(200).json({ code: 200, message: `${updatedCategory} Category updated`, updatedCategoryID: searchID });
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 });
 
 router.delete('/:id', async (req, res) => {
