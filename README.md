@@ -88,4 +88,5 @@ Licensed under the [MIT](https://opensource.org/licenses/MIT) license.
 
 ## Screencast
 
-[E-Commerce API](https://youtu.be/)
+[E-Commerce API - Part 1](https://youtu.be/5jloOkUUL-Q)  
+[E-Commerce API - Part 2](https://youtu.be/S0GPpENB89s)
